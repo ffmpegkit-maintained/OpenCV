@@ -28,6 +28,9 @@ android {
         jniLibs { useLegacyPackaging = false }  // keep .so 16 KB aligned
     }
 
+    // OpenCV's org.opencv.android camera classes reference org.opencv.BuildConfig.
+    buildFeatures { buildConfig = true }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
