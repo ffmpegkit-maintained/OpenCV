@@ -7,6 +7,9 @@ install:
   - |
     (
       set -e
+      # Remove submodules so JitPack's pom.xml discovery doesn't latch onto
+      # opencv/pom.xml (org.opencv:opencv-parent) — the relay doesn't need them.
+      rm -rf opencv opencv_contrib
       REL="v5.0.0"
       ART="OpenCV"
       DIR="$HOME/.m2/repository/com/github/ffmpegkit-maintained/$ART/$VERSION"
