@@ -7,9 +7,11 @@
 # build_sdk.py evaluates this with `ABI` in scope and reads `ABIs`.
 
 # BUILD_LIST restricts which modules are compiled (core deps pulled automatically).
+# NB: ArUco is in CORE objdetect in OpenCV 5.0 (not a contrib module) — it comes
+# with objdetect below. Free contrib additions vs the official AAR: face, tracking, text.
 SELECTED = (
     "core,imgproc,imgcodecs,videoio,video,calib,features,dnn,objdetect,photo,java,"
-    "face,tracking,aruco,text"
+    "face,tracking,text"
 )
 
 _vars = dict(
@@ -24,5 +26,5 @@ _vars = dict(
 )
 
 ABIs = [
-    ABI("2", "arm64-v8a", None, cmake_vars=_vars),   # Free = arm64-v8a only
+    ABI("3", "arm64-v8a", None, 24, cmake_vars=_vars),   # Free = arm64-v8a only (api 24)
 ]

@@ -24,8 +24,8 @@ OpenCV 5.0 **core + the most-requested contrib modules** — `arm64-v8a`:
 
 | Included (Free) | |
 |---|---|
-| Core | core, imgproc, video, calib, features, dnn, objdetect, photo |
-| **Contrib** | **face** (recognition), **tracking** (CSRT/KCF/MOSSE), **aruco** (markers), **text** (scene text) |
+| Core | core, imgproc, video, calib, features, dnn, objdetect (incl. **ArUco** in 5.0), photo |
+| **Contrib** | **face** (recognition), **tracking** (CSRT/KCF/MOSSE), **text** (scene text) |
 
 → See **[examples/](examples/)** for ready-to-use Kotlin (edge detection, DNN face
 detection, **face recognition**).
@@ -35,7 +35,7 @@ detection, **face recognition**).
 | | Official AAR | **Free** (this) | **Pro** |
 |---|:---:|:---:|:---:|
 | Core modules | ✅ | ✅ | ✅ |
-| face, tracking, aruco, text | ✗ | ✅ | ✅ |
+| face, tracking, text (contrib) | ✗ | ✅ | ✅ |
 | **Full contrib** (ml, Haar/HOG, gapi, ximgproc, +25) | ✗ | ✗ | ✅ |
 | Optimised DNN + pre-integrated models (face, OCR, doc-scan) | ✗ | ✗ | ✅ |
 | ABI | arm64-v8a | arm64-v8a | arm64-v8a + x86_64 |

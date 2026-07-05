@@ -16,7 +16,7 @@ means rebuilding the whole SDK from source.
 | `calib` | Camera calibration, 3D |
 | `features` | Feature detection/description (ORB, AKAZE, …) |
 | `dnn` | Deep-learning inference (load ONNX/Caffe/TF models) |
-| `objdetect` | Cascade/QR detection (see note on 5.0 below) |
+| `objdetect` | Cascade/QR + **ArUco/ChArUco** detection (ArUco moved into core in 5.0) |
 | `photo`, `stitching` | Computational photography, panorama |
 
 ## NOT in the official AAR (contrib — needs Pro)
@@ -25,7 +25,7 @@ means rebuilding the whole SDK from source.
 |---|---|---|
 | `face` | Face recognition (LBPH, Eigen, Fisher, `FaceRecognizerSF`) | The big one for most apps |
 | `tracking` | CSRT, KCF, MOSSE, DaSiamRPN trackers | Robust object tracking |
-| `aruco` | ArUco / ChArUco markers | AR, pose, calibration |
+| ~~`aruco`~~ | **Moved to core `objdetect` in 5.0** — now in the official AAR too | (no longer contrib) |
 | `text` | Scene text detection & recognition (EAST, DB, CRNN) | OCR pipelines |
 | `xfeatures2d` | SURF, DAISY, StarDetector, BEBLID, VGG | Extended features |
 | `ml` | SVM, KNN, DTrees, Boost, ANN_MLP | **Moved out of core in 5.0** |
