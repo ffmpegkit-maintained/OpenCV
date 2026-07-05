@@ -32,6 +32,24 @@ python3 "$OPENCV/platforms/android/build_sdk.py" \
   "$BUILD" \
   "$OPENCV"
 
+# --- 1b) Populate the Gradle library module from the built SDK ------------
+# So `:library:publishToMavenCentral` publishes the REAL AAR (org.opencv classes
+# + native .so), not an empty one. Verify with :library:publishToMavenLocal first.
+SDK="$BUILD/OpenCV-android-sdk/sdk"
+if [ -d "$SDK/java/src/org" ]; then
+  echo "[1b] Populating library/ from SDK for Maven publish…"
+  rm -rf "$ROOT/library/src/main/java/org" "$ROOT/library/src/main/jniLibs" "$ROOT/library/src/main/res"
+  mkdir -p "$ROOT/library/src/main/java"
+  cp -r "$SDK/java/src/org" "$ROOT/library/src/main/java/org"
+  [ -d "$SDK/java/res" ] && cp -r "$SDK/java/res" "$ROOT/library/src/main/res"
+  for abidir in "$SDK/native/libs"/*/; do
+    abi=$(basename "$abidir"); mkdir -p "$ROOT/library/src/main/jniLibs/$abi"
+    cp "$abidir"/*.so "$ROOT/library/src/main/jniLibs/$abi/"
+    cxx=$(find "$ANDROID_NDK_HOME" -name "libc++_shared.so" -path "*$abi*" 2>/dev/null | head -1)
+    [ -n "$cxx" ] && cp "$cxx" "$ROOT/library/src/main/jniLibs/$abi/"
+  done
+fi
+
 echo "[2/2] Packaging AAR…"
 # build_java_shared_aar.py takes the built OpenCV-android-sdk dir, auto-detects the
 # version from version.hpp, and writes ./outputs/opencv_java_shared_<ver>.aar.
