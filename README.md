@@ -39,7 +39,7 @@ detection, **face recognition**).
 | **Full contrib** (ml, Haar/HOG, gapi, ximgproc, +25) | ✗ | ✗ | ✅ |
 | Optimised DNN + pre-integrated models (face, OCR, doc-scan) | ✗ | ✗ | ✅ |
 | ABI | arm64-v8a | arm64-v8a | arm64-v8a + x86_64 |
-| Channel | Maven Central | Maven Central / JitPack | Gumroad |
+| Channel | Maven Central | Maven Central + GitHub Release | Gumroad |
 | Price | Free | **Free** | $24 / $62 team |
 
 **→ [Get OpenCV Pro](https://www.jokobee.com/opencv)** for the complete contrib set,
