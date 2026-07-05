@@ -2,7 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.ffmpegkit-maintained/opencv-contrib-android)](https://central.sonatype.com/artifact/dev.ffmpegkit-maintained/opencv-contrib-android)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Website](https://img.shields.io/badge/website-jokobee.com-blue.svg)](https://www.jokobee.com)
+[![Website](https://img.shields.io/badge/website-jokobee.com-blue.svg)](https://www.jokobee.com/opencv)
 
 **The `opencv_contrib` modules the official AAR doesn't ship — prebuilt, one Gradle
 line, no NDK, no rebuild.**
