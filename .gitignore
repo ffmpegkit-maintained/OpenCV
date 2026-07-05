@@ -1,0 +1,4 @@
+.DS_Store
+Thumbs.db
+# Wiki pages live in the separate GitHub Wiki repo (OpenCV.wiki.git).
+/wiki/
