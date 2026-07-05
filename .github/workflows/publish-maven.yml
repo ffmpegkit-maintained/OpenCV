@@ -38,10 +38,21 @@ jobs:
           chmod +x build-scripts/build-opencv-android.sh
           ./build-scripts/build-opencv-android.sh
 
-      - name: Publish to Maven Central
+      # Safety: build + install locally and verify the AAR is NOT empty (real
+      # org.opencv native lib present) BEFORE the irreversible Central publish.
+      - name: Verify AAR then publish to Maven Central
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_PRIVATE_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}
-        run: ./gradlew publishToMavenCentral --no-configuration-cache --stacktrace
+        run: |
+          set -e
+          ./gradlew :library:publishToMavenLocal --no-configuration-cache --stacktrace
+          AAR=$(find ~/.m2/repository/dev/ffmpegkit-maintained/opencv-contrib-android -name "*.aar" | head -1)
+          echo "Local AAR: $AAR ($(du -h "$AAR" | cut -f1))"
+          if ! unzip -l "$AAR" | grep -qE "jni/.*/libopencv_java5\.so"; then
+            echo "::error::AAR has no libopencv_java5.so — empty build, aborting Central publish"; exit 1
+          fi
+          echo "✓ AAR contains the OpenCV native lib — publishing to Maven Central (irreversible)"
+          ./gradlew :library:publishToMavenCentral --no-configuration-cache --stacktrace
