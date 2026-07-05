@@ -1,0 +1,23 @@
+# JitPack relay. OpenCV's native build (opencv + opencv_contrib, ~20 min) is too
+# heavy for JitPack's infra, so instead of compiling from source we download the
+# prebuilt AAR from the GitHub release and serve it as
+#   com.github.ffmpegkit-maintained:OpenCV:<version>
+# JitPack picks up artifacts placed in the local Maven repository.
+install:
+  - REL="v5.0.0"
+  - ART="OpenCV"
+  - DIR="$HOME/.m2/repository/com/github/ffmpegkit-maintained/$ART/$VERSION"
+  - mkdir -p "$DIR"
+  - curl -fsSL -o "$DIR/$ART-$VERSION.aar" "https://github.com/ffmpegkit-maintained/OpenCV/releases/download/$REL/opencv-contrib-android-5.0.0.aar"
+  - |
+    cat > "$DIR/$ART-$VERSION.pom" <<POM
+    <?xml version="1.0" encoding="UTF-8"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0">
+      <modelVersion>4.0.0</modelVersion>
+      <groupId>com.github.ffmpegkit-maintained</groupId>
+      <artifactId>$ART</artifactId>
+      <version>$VERSION</version>
+      <packaging>aar</packaging>
+    </project>
+    POM
+  - echo "Served prebuilt OpenCV AAR as com.github.ffmpegkit-maintained:$ART:$VERSION"
