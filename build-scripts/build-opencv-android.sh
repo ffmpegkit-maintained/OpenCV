@@ -28,6 +28,7 @@ python3 "$OPENCV/platforms/android/build_sdk.py" \
   --extra_modules_path "$CONTRIB/modules" \
   --ndk_path     "$ANDROID_NDK_HOME" \
   --sdk_path     "${ANDROID_SDK_ROOT:-${ANDROID_HOME:-}}" \
+  --no_samples_build \
   "$BUILD" \
   "$OPENCV"
 

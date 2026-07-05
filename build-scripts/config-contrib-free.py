@@ -21,7 +21,8 @@ _vars = dict(
     # 16 KB page alignment (Android 15 ready)
     CMAKE_SHARED_LINKER_FLAGS="-Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384",
     BUILD_ANDROID_EXAMPLES="OFF",
-    BUILD_TESTS="OFF",
+    # NB: do NOT set BUILD_TESTS=OFF — build_sdk.py targets `opencv_tests` on
+    # install, so disabling it makes ninja fail ("unknown target opencv_tests").
     BUILD_PERF_TESTS="OFF",
 )
 
