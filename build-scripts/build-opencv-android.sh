@@ -32,9 +32,17 @@ python3 "$OPENCV/platforms/android/build_sdk.py" \
   "$OPENCV"
 
 echo "[2/2] Packaging AAR…"
+# build_java_shared_aar.py takes the built OpenCV-android-sdk dir, auto-detects the
+# version from version.hpp, and writes ./outputs/opencv_java_shared_<ver>.aar.
+cd "$ROOT"
 python3 "$OPENCV/platforms/android/build_java_shared_aar.py" \
-  --opencv_version "5.0.0" \
-  --output_dir     "$OUT" \
-  "$BUILD/o4a"
+  --ndk_location      "$ANDROID_NDK_HOME" \
+  --java_version      17 \
+  --android_compile_sdk 35 \
+  --android_min_sdk   24 \
+  --android_target_sdk 35 \
+  "$BUILD/OpenCV-android-sdk"
 
-echo "Done:"; ls -la "$OUT"/*.aar 2>/dev/null || echo "  (no .aar — inspect $BUILD)"
+mkdir -p "$OUT"
+cp "$ROOT"/outputs/opencv_java_shared_*.aar "$OUT/" 2>/dev/null || true
+echo "Done:"; ls -la "$OUT"/*.aar "$ROOT"/outputs/*.aar 2>/dev/null || echo "  (check $ROOT/outputs/)"
