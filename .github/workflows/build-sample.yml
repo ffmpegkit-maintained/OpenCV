@@ -1,0 +1,38 @@
+name: Build Smoke-Test APK
+
+# Manual — builds the runtime smoke-test app using the Free AAR from the release.
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Fetch Free AAR from the v5.0.0 release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p sample/libs
+          gh release download v5.0.0 --repo ffmpegkit-maintained/OpenCV -p '*.aar' --dir sample/libs
+          ls -la sample/libs
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build smoke-test APK
+        run: ./gradlew :sample:assembleDebug --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: opencv-smoketest-apk
+          path: sample/build/outputs/apk/debug/*.apk
+          retention-days: 3

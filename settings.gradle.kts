@@ -10,3 +10,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "opencv-contrib-android"
 include(":library")
+include(":sample")
