@@ -1,0 +1,45 @@
+name: Build AAR (core + selected contrib)
+
+# Manual — the OpenCV build is heavy (~20-40 min). Don't auto-run on push.
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install NDK r27c + CMake + Ninja
+        run: |
+          sdkmanager "ndk;27.2.12479018" "cmake;3.22.1"
+          sudo apt-get update && sudo apt-get install -y ninja-build ant
+
+      - name: Cache OpenCV build tree
+        uses: actions/cache@v4
+        with:
+          path: cache/android-build
+          key: opencv5-free-${{ hashFiles('build-scripts/config-contrib-free.py') }}
+
+      - name: Build OpenCV + selected contrib AAR
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+        run: |
+          chmod +x build-scripts/build-opencv-android.sh
+          ./build-scripts/build-opencv-android.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: opencv-contrib-android-aar
+          path: library/build/outputs/aar/*.aar
+          retention-days: 5

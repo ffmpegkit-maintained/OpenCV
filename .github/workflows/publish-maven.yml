@@ -1,0 +1,47 @@
+name: Publish to Maven Central
+
+# Manual only. Builds the OpenCV + selected-contrib SDK, then publishes
+# opencv-contrib-android to Maven Central. Publish ONLY after Luc validates.
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Git tag to publish (e.g. v5.0.0)"
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: ${{ github.event.inputs.release_tag }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install NDK r27c + CMake + Ninja
+        run: |
+          sdkmanager "ndk;27.2.12479018" "cmake;3.22.1"
+          sudo apt-get update && sudo apt-get install -y ninja-build ant
+
+      - name: Build OpenCV + selected contrib AAR
+        env:
+          ANDROID_NDK_HOME: ${{ env.ANDROID_SDK_ROOT }}/ndk/27.2.12479018
+        run: |
+          chmod +x build-scripts/build-opencv-android.sh
+          ./build-scripts/build-opencv-android.sh
+
+      - name: Publish to Maven Central
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}
+        run: ./gradlew publishToMavenCentral --no-configuration-cache --stacktrace

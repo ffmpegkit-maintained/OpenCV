@@ -1,0 +1,2 @@
+# OpenCV Java wrappers (org.opencv.*) are written here by the build script
+# (build-scripts/build-opencv-android.sh → OpenCV build_sdk.py). Do not hand-edit.

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- OpenCV Pro library. Namespace declared in build.gradle.kts (org.opencv).
+         No permissions required by the library itself; camera/storage are the
+         host app's responsibility. -->
+</manifest>

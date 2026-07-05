@@ -2,3 +2,24 @@
 Thumbs.db
 # Wiki pages live in the separate GitHub Wiki repo (OpenCV.wiki.git).
 /wiki/
+
+# Gradle / Android build
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.cxx/
+.externalNativeBuild/
+
+# OpenCV build outputs (heavy — never commit)
+opencv/build/
+opencv_contrib/build/
+OpenCV-android-sdk/
+cache/
+*.so
+*.a
+*.aar
+!gradle/wrapper/gradle-wrapper.jar
+*.zip
+*.tar.gz

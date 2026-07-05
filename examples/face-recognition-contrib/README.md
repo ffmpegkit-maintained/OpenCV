@@ -1,18 +1,20 @@
-# Example — Face recognition (requires OpenCV **Pro**)
+# Example — Face recognition (`face` contrib module)
 
 Face **recognition** — matching a face to an identity — uses the `face` contrib
-module (`FaceRecognizerSF`, `LBPHFaceRecognizer`). This module is **not** in the
-official AAR. This example shows the code; to run it you need
-**[OpenCV Pro](https://www.jokobee.com/opencv)** (core + contrib prebuilt).
+module (`FaceRecognizerSF`, `LBPHFaceRecognizer`). It's **not** in the official
+AAR, but it **is** in our Free build (`face` is one of the selected contrib
+modules).
 
-## Dependency (Pro)
+## Dependency (Free)
 
 ```kotlin
-// OpenCV Pro AAR (from Jokobee) — drop the .aar in app/libs/
 dependencies {
-    implementation(files("libs/opencv-android-pro-5.0.0.aar"))
+    implementation("dev.ffmpegkit-maintained:opencv-contrib-android:5.0.0")
 }
 ```
+
+> Need the *full* contrib set (ml, Haar/HOG, gapi, ximgproc, …), optimised DNN, or
+> pre-integrated models? That's [OpenCV Pro](https://www.jokobee.com/opencv).
 
 ## Kotlin — SFace recognition (embeddings + cosine match)
 
