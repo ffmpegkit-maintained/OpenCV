@@ -48,6 +48,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           set -e
+          chmod +x ./gradlew
           ./gradlew :library:publishToMavenLocal --no-configuration-cache --stacktrace
           AAR=$(find ~/.m2/repository/dev/ffmpegkit-maintained/opencv-contrib-android -name "*.aar" | head -1)
           echo "Local AAR: $AAR ($(du -h "$AAR" | cut -f1))"
