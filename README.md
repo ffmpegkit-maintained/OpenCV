@@ -66,3 +66,15 @@ Also: [FFmpegKit](https://www.jokobee.com/ffmpegkit) ·
 
 **[Jokobee](https://www.jokobee.com)** · contact@jokobee.com · Apache-2.0
 (same as OpenCV upstream).
+
+## License
+
+This project redistributes OpenCV under the Apache License 2.0. See
+[LICENSE](LICENSE). The upstream source is not modified.
+
+## Third-Party Notices
+
+Third-party components bundled or built into this project retain their original
+licenses. See [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt), which is also copied
+into the AAR assets at build time (readable at runtime via
+`context.assets.open("THIRD-PARTY-NOTICES.txt")`).

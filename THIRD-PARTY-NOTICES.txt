@@ -1,0 +1,40 @@
+================================================================================
+THIRD-PARTY NOTICES — OpenCV Android (Free)
+================================================================================
+Include this file in your application's "Open Source Licenses" or "About"
+screen, or bundle it as an asset accessible to the user.
+
+--------------------------------------------------------------------------------
+OPENCV
+--------------------------------------------------------------------------------
+Copyright (c) 2000-2026 Intel Corporation, Willow Garage Inc.,
+Itseez Inc., OpenCV team, and contributors.
+Licensed under the Apache License, Version 2.0.
+Repository: https://github.com/opencv/opencv
+
+--------------------------------------------------------------------------------
+OPENCV CONTRIB (selected modules in Free tier)
+--------------------------------------------------------------------------------
+Copyright (c) 2000-2026 OpenCV team and contributors.
+Licensed under the Apache License, Version 2.0.
+Repository: https://github.com/opencv/opencv_contrib
+
+--------------------------------------------------------------------------------
+BUNDLED THIRD-PARTY LIBRARIES
+--------------------------------------------------------------------------------
+- libjpeg-turbo    — IJG / BSD 3-Clause / zlib
+- libpng           — libpng License (BSD-like)
+- zlib             — zlib License
+- protobuf (DNN)   — BSD 3-Clause
+
+No GPL components are included in this build.
+
+--------------------------------------------------------------------------------
+APACHE LICENSE, VERSION 2.0
+--------------------------------------------------------------------------------
+Licensed under the Apache License, Version 2.0. You may obtain a copy at:
+    http://www.apache.org/licenses/LICENSE-2.0
+
+--------------------------------------------------------------------------------
+Build scripts and packaging: copyright (c) 2026 Jokobee (www.jokobee.com)
+================================================================================
