@@ -1,6 +1,6 @@
 # OpenCV + Contrib for Android
 
-[![Maven Central](https://img.shields.io/maven-central/v/dev.ffmpegkit-maintained/opencv-contrib-android)](https://central.sonatype.com/artifact/dev.ffmpegkit-maintained/opencv-contrib-android)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.ffmpegkit-maintained/opencv-contrib-android.svg?label=Maven%20Central)](https://search.maven.org/artifact/dev.ffmpegkit-maintained/opencv-contrib-android)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Website](https://img.shields.io/badge/website-jokobee.com-blue.svg)](https://www.jokobee.com/opencv)
 
@@ -39,11 +39,20 @@ detection, **face recognition**).
 | **Full contrib** (ml, Haar/HOG, gapi, ximgproc, +25) | ✗ | ✗ | ✅ |
 | Optimised DNN + pre-integrated models (face, OCR, doc-scan) | ✗ | ✗ | ✅ |
 | ABI | arm64-v8a | arm64-v8a | arm64-v8a + x86_64 |
-| Channel | Maven Central | Maven Central + GitHub Release | Gumroad |
+| Channel | Maven Central | Maven Central + GitHub Release | [jokobee.com](https://www.jokobee.com/opencv) |
 | Price | Free | **Free** | $24 / $62 team |
 
+Pro adds, on top of everything in Free:
+
+- **Full contrib module set** — `ml`, Haar/HOG (`xobjdetect`), G-API (`gapi`),
+  `ximgproc`, and 25+ other `opencv_contrib` modules not in Free.
+- **Optimised DNN builds** with pre-integrated models for face recognition, OCR, and
+  document scanning — ready to use, no separate model wrangling.
+- **x86_64 ABI**, in addition to arm64-v8a, for emulator/desktop-class testing.
+
 **→ [Get OpenCV Pro](https://www.jokobee.com/opencv)** for the complete contrib set,
-optimised DNN builds, and pre-integrated models (document scanning, face, OCR).
+optimised DNN builds, and pre-integrated models (document scanning, face, OCR). Free
+users who need the full contrib set can pick it up there.
 
 ## Upgrading from OpenCV 4.x to 5.0?
 
