@@ -48,7 +48,7 @@ mavenPublishing {
 
     pom {
         name = "opencv-contrib-android"
-        description = "OpenCV 5.0 + selected contrib modules (face, tracking, aruco, text) prebuilt for Android — the contrib the official AAR doesn't ship. arm64-v8a. Full contrib in the Pro build."
+        description = "OpenCV for Android with contrib modules — OpenCV 5.0 + face, tracking, aruco and text-recognition modules prebuilt, the contrib the official AAR doesn't ship. arm64-v8a. Full contrib in the Pro build. jokobee.com"
         inceptionYear = "2026"
         url = "https://github.com/ffmpegkit-maintained/OpenCV"
         licenses {
